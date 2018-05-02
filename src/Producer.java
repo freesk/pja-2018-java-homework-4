@@ -4,10 +4,12 @@ public class Producer extends Thread implements Runnable {
 	private String name = "";
 	private Thread productionThread;
 	private Market market;
+	private Screen screen;
 	
-	public Producer(String name, Market market) {
+	public Producer(String name, Market market, Screen screen) {
 		this.name = name;
 		this.market = market;
+		this.screen = screen;
 	}
 	
 	public void run() {
@@ -17,16 +19,16 @@ public class Producer extends Thread implements Runnable {
 				// sleep a random number of seconds
 				sleep(Mixin.getRandomInt(1, 5) * 1000);
 			} catch(InterruptedException e) {
-				System.out.println(e.getMessage());
+				screen.log(e.getMessage());
 				return;
 			}
 			if (cThread == productionThread) {
 				// create a new product
 				Product p = new Product(this.name);
-				System.out.println(name + " produced a new car " + p.uniqueID);
+				screen.log(name + " produced a new car " + p.uniqueID + "");
 				// put up for sale
 				market.sell(p);
-				System.out.println(name + " put " + p.uniqueID + " up for sale!");
+				screen.log(name + " put " + p.uniqueID + " up for sale!");
 			}
 		}
 	}

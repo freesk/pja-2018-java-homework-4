@@ -13,8 +13,11 @@ public class Market {
 		}
 		// add a new product
 		list.add(p);
-		System.out.println("Market saturation is " + list.size() + "/" + NUMBER_OF_SLOTS);
 		notifyAll();
+	}
+	
+	public String getStatus() {
+		return "Saturation " + list.size() + "/" + NUMBER_OF_SLOTS;
 	}
 	
 	public synchronized Product buy() {

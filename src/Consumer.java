@@ -4,10 +4,12 @@ public class Consumer extends Thread implements Runnable {
 	private String name = "";
 	private Thread consumerThread;
 	private Market market;
+	private Screen screen;
 	
-	public Consumer(String name, Market market) {
+	public Consumer(String name, Market market, Screen screen) {
 		this.name = name;
 		this.market = market;
+		this.screen = screen;
 	}
 	
 	public void run() {
@@ -17,14 +19,14 @@ public class Consumer extends Thread implements Runnable {
 				// sleep a random number of seconds 
 				sleep(Mixin.getRandomInt(3, 9) * 1000);
 			} catch(InterruptedException e) {
-				System.out.println(e.getMessage());
+				screen.log(e.getMessage());
 				return;
 			}
 			if (cThread == consumerThread) {
 				// buy a product
-				System.out.println(name + " is about to buy someting!");
+				screen.log(name + " is about to buy someting!");
 				Product p = market.buy();
-				System.out.println(name + " bought " + p.producer + " " + p.uniqueID );
+				screen.log(name + " bought " + p.producer + " " + p.uniqueID + "");
 			}
 		}
 	}
