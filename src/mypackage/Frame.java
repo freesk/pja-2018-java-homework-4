@@ -1,3 +1,4 @@
+package mypackage;
 import java.awt.EventQueue;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -8,12 +9,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Frame extends JFrame {
-
+	// constants
 	final String[] PRODUCER_NAMES = { "Mercedes-Benz", "Lexus", "Jaguar", "Toyota", "McLaren" };
 	final String[] CONSUMER_NAMES = { "CIA", "MI6", "MOSSAD", "MSS", "BND", "FSB", "DGSE", "ISI", "RAW", "ASIS" };
 	
@@ -53,13 +51,16 @@ public class Frame extends JFrame {
 		txtField.setBounds(464, 336, 120, 20);
 		contentPane.add(txtField);
 		txtField.setColumns(10);
+		txtField.setEditable(false);
 		
 		Market m = new Market();
+		// create a wrapper that hides operations on textArea 
 		Screen s = new Screen(textArea);
+		// timer
 		Timer timer = new Timer();
 		
+		// 24 frames per second
 		timer.schedule(new TimerTask() {
-		  @Override
 		  public void run() {
 			  txtField.setText(m.getStatus()); 
 		  }
@@ -68,12 +69,16 @@ public class Frame extends JFrame {
 		int i;
 		
 		for (i = 0; i < PRODUCER_NAMES.length; i++) {
+			// new thread
 			Producer producer = new Producer(PRODUCER_NAMES[i], m, s);
+			// start 
 			producer.startProduction();
 		}
 		
 		for (i = 0; i < CONSUMER_NAMES.length; i++) {
-			Consumer consumer = new Consumer(CONSUMER_NAMES[i], m, s);	
+			// new thread
+			Consumer consumer = new Consumer(CONSUMER_NAMES[i], m, s);
+			// start
 			consumer.startBuying();
 		}		
 	}

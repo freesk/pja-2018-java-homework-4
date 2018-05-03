@@ -1,3 +1,4 @@
+package mypackage;
 
 public class Consumer extends Thread implements Runnable {
 	
@@ -19,7 +20,7 @@ public class Consumer extends Thread implements Runnable {
 				// sleep a random number of seconds 
 				sleep(Mixin.getRandomInt(3, 9) * 1000);
 			} catch(InterruptedException e) {
-				screen.log(e.getMessage());
+				System.out.println(e.getMessage());
 				return;
 			}
 			if (cThread == consumerThread) {
