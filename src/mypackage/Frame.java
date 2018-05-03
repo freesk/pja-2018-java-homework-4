@@ -11,6 +11,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Frame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// constants
 	final String[] PRODUCER_NAMES = { "Mercedes-Benz", "Lexus", "Jaguar", "Toyota", "McLaren" };
 	final String[] CONSUMER_NAMES = { "CIA", "MI6", "MOSSAD", "MSS", "BND", "FSB", "DGSE", "ISI", "RAW", "ASIS" };

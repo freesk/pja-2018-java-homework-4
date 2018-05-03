@@ -5,12 +5,17 @@ public class Producer extends Thread implements Runnable {
 	private String name = "";
 	private Thread productionThread;
 	private Market market;
-	private Screen screen;
+	private Screen screen = new Screen();
 	
 	public Producer(String name, Market market, Screen screen) {
 		this.name = name;
 		this.market = market;
 		this.screen = screen;
+	}
+	
+	public Producer(String name, Market market) {
+		this.name = name;
+		this.market = market;
 	}
 	
 	public void run() {
@@ -42,6 +47,7 @@ public class Producer extends Thread implements Runnable {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void stopProduction() {
 		productionThread = null;
 		super.stop();

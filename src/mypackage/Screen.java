@@ -3,7 +3,11 @@ import javax.swing.JTextArea;
 
 public class Screen {
 	
-	JTextArea textArea;
+	JTextArea textArea = new JTextArea();
+	
+	public Screen() {
+		
+	}
 	
 	public Screen(JTextArea textArea) {
 		this.textArea = textArea;

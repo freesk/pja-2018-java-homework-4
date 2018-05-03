@@ -40,6 +40,7 @@ public class Consumer extends Thread implements Runnable {
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void stopBuying() {
 		consumerThread = null;
 		super.stop();

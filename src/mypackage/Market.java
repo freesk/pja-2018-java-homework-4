@@ -17,8 +17,12 @@ public class Market {
 		notifyAll();
 	}
 	
+	public int getNumberOfSlots() {
+		return list.size();
+	}
+	
 	public String getStatus() {
-		return "Saturation " + list.size() + "/" + NUMBER_OF_SLOTS;
+		return "Saturation " + getNumberOfSlots() + "/" + NUMBER_OF_SLOTS;
 	}
 	
 	public synchronized Product buy() {
