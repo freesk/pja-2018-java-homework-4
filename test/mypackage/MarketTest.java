@@ -59,6 +59,17 @@ public class MarketTest {
 		Assert.assertEquals(foo, true);
 	}
 	
+	@Test 
+	public void numberOfSlotsTest() {
+		Market market = new Market();
+		
+		market.sell(new Product("Test"));
+		
+		int n = market.getNumberOfSlots();
+		
+		Assert.assertEquals(n, 1);
+	}
+	
 	@Test
 	public void sellWithMaxSaturation() {
 		Market market = new Market();

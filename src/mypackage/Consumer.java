@@ -5,11 +5,15 @@ public class Consumer extends Thread implements Runnable {
 	private String name = "";
 	private Thread consumerThread;
 	private Market market;
-	private Screen screen;
+	private Screen screen = new Screen();
 	
-	public Consumer(String name, Market market, Screen screen) {
+	public Consumer(String name, Market market) {
 		this.name = name;
 		this.market = market;
+	}
+	
+	public Consumer(String name, Market market, Screen screen) {
+		this(name, market);
 		this.screen = screen;
 	}
 	

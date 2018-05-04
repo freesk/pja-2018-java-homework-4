@@ -8,17 +8,21 @@ import org.junit.Test;
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
-public class ProducerTest {
+public class ConsumerTest {
 	
 	private boolean foo = false;
 
 	@Test
-	public void productionTest() {
-		Market market = new Market();
-		Producer p = new Producer("Test", market);
-		p.startProduction();
+	public void consumingTest() {
 		
 		foo = false;
+		
+		Market market = new Market();
+		
+		market.sell(new Product("Test"));
+		
+		Consumer c = new Consumer("Test", market);
+		c.startBuying();
 		
 		Timer timer = new Timer();
 		
@@ -29,7 +33,7 @@ public class ProducerTest {
 		timer.schedule(new TimerTask() {
 			public void run() {
 				// stop the thread
-				p.stopProduction();
+				c.stopBuying();
 				// good to go
 				foo = true;
 			}
@@ -40,11 +44,10 @@ public class ProducerTest {
 			System.out.println("wait");
 		}
 		
-		// the producer must create at least one new product within n seconds
-		boolean bar = market.getNumberOfSlots() > 0;
+		// the consumer must buy at least one product within n seconds
+		boolean bar = market.getNumberOfSlots() == 0;
 		
 		Assert.assertEquals(bar, true);
-		
 	}
 
 }

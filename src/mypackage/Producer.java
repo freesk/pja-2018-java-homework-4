@@ -7,15 +7,14 @@ public class Producer extends Thread implements Runnable {
 	private Market market;
 	private Screen screen = new Screen();
 	
-	public Producer(String name, Market market, Screen screen) {
-		this.name = name;
-		this.market = market;
-		this.screen = screen;
-	}
-	
 	public Producer(String name, Market market) {
 		this.name = name;
 		this.market = market;
+	}
+	
+	public Producer(String name, Market market, Screen screen) {
+		this(name, market);
+		this.screen = screen;
 	}
 	
 	public void run() {
